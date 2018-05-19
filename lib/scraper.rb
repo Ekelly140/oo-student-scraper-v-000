@@ -1,6 +1,6 @@
-require 'open-uri'
-require 'pry'
+studrequire 'open-uri'
 require 'nokogiri'
+require 'pry'
 
 
 class Scraper
@@ -10,11 +10,11 @@ class Scraper
     students = []
     index.css("div.roster-cards-container").each do |card|
       card.css(".student-card").each do |student|
-
         link = student.css("a").attr("href").value
         student_location = student.css('.student-location').text
         student_name = student.css('.student-name').text
         students << {name: student_name, location: student_location, profile_url: link}
+
       end
     end
     students
@@ -32,6 +32,7 @@ class Scraper
       elsif link.include?("twitter")
         student[:twitter] = link
       else
+
         student[:blog] = link
       end
     end
